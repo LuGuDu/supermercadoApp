@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuHome"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/menuStore"
+        android:title="Productos" />
+    <item
+        android:id="@+id/menuUsers"
+        android:title="Usuarios" />
+    <item
+        android:id="@+id/menuProfile"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/menuLogOut"
+        android:title="Cerrar sesion" />
+
+</menu>

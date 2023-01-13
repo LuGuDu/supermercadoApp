@@ -23,5 +23,5 @@
     -->
 
 <!--  ini insert api gmaps-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDDssCV-_oVaqWFAoqX7MYrHEJ3bVwIDU8</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDF6bU7KqJzf77PLJJKJSjDGXhNHoCo8z0</string>
 </resources>

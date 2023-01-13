@@ -11,94 +11,97 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mcsprojectakhir.cart.CarritoView;
 import com.example.mcsprojectakhir.model.Product;
 import com.example.mcsprojectakhir.model.UserData;
 import com.example.mcsprojectakhir.products.StoreFormRecyclerView;
+import com.example.mcsprojectakhir.registers.RegisterView;
 import com.example.mcsprojectakhir.users.UsersView;
 
 import java.util.Vector;
 
 public class HomeForm extends AppCompatActivity {
 
-    RecyclerView transactionRV;
-
     public static final String SEND_ID = "com.example.mcsprojectakhir.SEND_ID";
 
     int userId;
-    TextView emptyTrData;
 
-    UserDataDBHelper UDdb;
+    Button productoButton, usuarioButton, carritoButton, historialButton, tiendasButton;
 
-    public static Vector<TransactionHistoryData> TDVi = new Vector<>();
-    public static Vector<TransactionHistoryData> TDV = new Vector<>();
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), HomeForm.class);
+        startActivity(intent);
+        finish();
 
-    public static Vector<Product> PDV = new Vector<>();
-
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_form);
 
-        UDdb = new UserDataDBHelper(HomeForm.this);
+        productoButton = findViewById(R.id.buttonProducts);
+        usuarioButton = findViewById(R.id.buttonUsuarios);
+        carritoButton = findViewById(R.id.buttonCarrito);
+        historialButton = findViewById(R.id.buttonRegisters);
+        tiendasButton = findViewById(R.id.buttonShops);
+
+        productoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StoreFormRecyclerView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        usuarioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UsersView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        carritoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CarritoView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        historialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        tiendasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GoogleMapsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         MainActivity.UDV.clear();
-        storeUDInVector();
-
-        PDV.clear();
 
         Intent intent = getIntent();
         userId = intent.getIntExtra(MainActivity.SEND_ID, -1);
-        emptyTrData = findViewById(R.id.textViewEmptyData);
 
-        if(userId == -1){
-            Intent intentC = getIntent();
-            userId = intentC.getIntExtra(ProfileForm.SEND_ID, -1);
-            emptyTrData = findViewById(R.id.textViewEmptyData);
-        }
-
-        TDV.clear();
-
-        TDVi.clear();
-        for(int i = 0 ; i < TDV.size() ; i++){
-            if(TDV.get(i).getTrUserId().contentEquals(userId+1+"")){
-                TDVi.add(new TransactionHistoryData(TDV.get(i).getTrId(), Integer.parseInt(TDV.get(i).getTrUserId())-1+"", Integer.parseInt(TDV.get(i).getTrProductId())-1+"", TDV.get(i).getTrDate()));
-
-            }
-        }
-
-        if(TDVi.size() == 0){
-            emptyTrData.setText("there is no transaction");
-        } else{
-            transactionRV = findViewById(R.id.tranHisRV);
-            TransactionDataHistoryAdapter tradp = new TransactionDataHistoryAdapter(this, userId);
-            tradp.setTransactions(TDVi);
-
-            transactionRV.setAdapter(tradp);
-            transactionRV.setLayoutManager(new GridLayoutManager(this, 1));
-
-        }
-
-    }
-
-    public int storeUDInVector () {
-        Cursor cursor = UDdb.readAllUserData();
-
-        if(cursor.getCount() == 0) {
-
-            return -1;
-
-        } else {
-
-            while (cursor.moveToNext()) {
-
-                UserData obj =  new UserData(cursor.getString(0), cursor.getString(1), cursor.getString(2));
-                MainActivity.UDV.add(obj);
-            }
-            return 1;
-        }
     }
 
     @Override
@@ -113,11 +116,10 @@ public class HomeForm extends AppCompatActivity {
 
         Intent intent;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menuHome:
                 return true;
             case R.id.menuStore:
-
 
                 intent = new Intent(getApplicationContext(), StoreFormRecyclerView.class);
                 intent.putExtra(SEND_ID, userId);
@@ -127,22 +129,26 @@ public class HomeForm extends AppCompatActivity {
 
                 return true;
 
-            case R.id.menuProfile:
-                intent = new Intent(getApplicationContext(), ProfileForm.class);
-
-                intent.putExtra(SEND_ID, userId);
-                startActivity(intent);
-                finish();
-
-                return true;
-
-            case R.id.menuLogOut:
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
             case R.id.menuUsers:
                 intent = new Intent(getApplicationContext(), UsersView.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            case R.id.menuCart:
+                intent = new Intent(getApplicationContext(), CarritoView.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            case R.id.menuRegister:
+                intent = new Intent(getApplicationContext(), RegisterView.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            case R.id.menuShops:
+                intent = new Intent(getApplicationContext(), GoogleMapsActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

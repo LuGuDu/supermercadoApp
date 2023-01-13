@@ -82,7 +82,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             public void onClick(View v) {
                 RequestQueue requestQueue = Volley.newRequestQueue(ctx);
                 String productId = Integer.toString(products.get(position).getId());
-                String url = "http://10.0.2.2:8080/supermercado/catalogo/productos/"+productId;
+                String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/productos/"+productId;
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, url, null, null, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -101,7 +101,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 RequestQueue requestQueue = Volley.newRequestQueue(ctx);
-                String url = "http://10.0.2.2:8080/supermercado/catalogo/carritos/101";
+                String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/carritos/203";
                 int productId = products.get(position).getId();
 
                 Map<String, Integer> map = new HashMap<>();
@@ -109,8 +109,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 map.put("cantidad", 1);
                 JSONObject jo = new JSONObject(map);
 
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,
-                        jo, null, new Response.ErrorListener() {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jo, null, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();

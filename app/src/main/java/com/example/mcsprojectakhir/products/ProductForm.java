@@ -111,7 +111,7 @@ public class ProductForm extends AppCompatActivity {
 
     public void modificateProduct(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/supermercado/catalogo/productos/"+productId;
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/productos/"+productId;
 
         productName = nameTV.getText().toString();
         productPrice = priceTV.getText().toString();
@@ -139,7 +139,7 @@ public class ProductForm extends AppCompatActivity {
 
     public void createProduct(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/supermercado/catalogo/productos/";
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/productos/";
 
         productName = nameTV.getText().toString();
         productPrice = priceTV.getText().toString();

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".products.StoreFormRecyclerView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="101dp">
+
+            <Button
+                android:id="@+id/comprarButton"
+                android:layout_width="166dp"
+                android:layout_height="47dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="7dp"
+                android:layout_weight="3"
+                android:text="Comprar"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.783"
+                app:layout_constraintStart_toEndOf="@+id/textViewCarrito"
+                app:layout_constraintTop_toBottomOf="@+id/precioFinalTV"
+                app:layout_constraintVertical_bias="0.907"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textViewCarrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginBottom="52dp"
+                android:text="Carrito"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/precioFinalTV"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/precioFinalTV"
+                android:layout_width="140dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="83dp"
+                android:layout_marginBottom="10dp"
+                android:text="Precio final:"
+                app:layout_constraintBottom_toTopOf="@+id/comprarButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewCarrito"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>

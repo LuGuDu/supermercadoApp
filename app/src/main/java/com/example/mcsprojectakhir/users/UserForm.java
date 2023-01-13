@@ -106,7 +106,7 @@ public class UserForm extends AppCompatActivity {
 
     public void createUser(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/supermercado/catalogo/usuarios/";
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/usuarios/";
 
         userName = nameTV.getText().toString();
         userRole = roleTV.getText().toString();
@@ -133,7 +133,7 @@ public class UserForm extends AppCompatActivity {
 
     public void modificateUser(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/supermercado/catalogo/usuarios/"+userIdent;
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/usuarios/"+userIdent;
 
         userName = nameTV.getText().toString();
         userRole = roleTV.getText().toString();

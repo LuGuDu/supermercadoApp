@@ -6,16 +6,19 @@
         android:id="@+id/menuHome"
         android:title="Inicio" />
     <item
+        android:id="@+id/menuShops"
+        android:title="Tiendas" />
+    <item
         android:id="@+id/menuStore"
         android:title="Productos" />
+    <item
+        android:id="@+id/menuCart"
+        android:title="Carrito" />
     <item
         android:id="@+id/menuUsers"
         android:title="Usuarios" />
     <item
-        android:id="@+id/menuProfile"
-        android:title="Perfil" />
-    <item
-        android:id="@+id/menuLogOut"
-        android:title="Cerrar sesion" />
+        android:id="@+id/menuRegister"
+        android:title="Historial" />
 
 </menu>

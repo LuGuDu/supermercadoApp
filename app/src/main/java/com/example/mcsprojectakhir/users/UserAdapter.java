@@ -73,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             public void onClick(View v) {
                 RequestQueue requestQueue = Volley.newRequestQueue(ctx);
                 String userIdent = Integer.toString(users.get(position).getId());
-                String url = "http://10.0.2.2:8080/supermercado/catalogo/usuarios/"+userIdent;
+                String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/usuarios/"+userIdent;
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, url, null, null, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {

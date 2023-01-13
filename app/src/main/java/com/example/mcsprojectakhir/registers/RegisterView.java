@@ -1,4 +1,4 @@
-package com.example.mcsprojectakhir.users;
+package com.example.mcsprojectakhir.registers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.mcsprojectakhir.HomeForm;
 import com.example.mcsprojectakhir.R;
 import com.example.mcsprojectakhir.VolleyCallBack;
-import com.example.mcsprojectakhir.model.User;
+import com.example.mcsprojectakhir.model.Product;
+import com.example.mcsprojectakhir.model.Register;
+import com.example.mcsprojectakhir.products.ProductForm;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,20 +28,19 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
-public class UsersView extends AppCompatActivity {
+public class RegisterView extends AppCompatActivity {
 
     public static final String SEND_ID = "com.example.mcsprojectakhir.SEND_ID";
 
     int userId;
 
-    public static Vector<User> UDV = new Vector<>();
+    public static Vector<Register> RDV = new Vector<>();
 
-    RecyclerView userRV;
-    Button crearUsuarioButton;
+    RecyclerView registerRV;
 
-    int userIdent;
-    String userName;
-    String userRole;
+    String timestamp, cart, user;
+    int registerId;
+    double price;
 
     @Override
     public void onBackPressed() {
@@ -55,56 +56,46 @@ public class UsersView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_form_recycler_view);
-
-        crearUsuarioButton = findViewById(R.id.crearUsuarioButton);
-
-        crearUsuarioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UserForm.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_registers_view);
 
         Intent intent = getIntent();
         userId = intent.getIntExtra(HomeForm.SEND_ID, -1);
-        userRV = findViewById(R.id.userRV);
+        registerRV = findViewById(R.id.registerRV);
 
-        UserAdapter udp = new UserAdapter(userId, this);
-        userRV.setLayoutManager(new GridLayoutManager(this, 1));
+        RegisterAdapter rdp = new RegisterAdapter(userId, this);
+        registerRV.setLayoutManager(new GridLayoutManager(this, 1));
 
-
-        getUsers(new VolleyCallBack() {
+        getRegisters(new VolleyCallBack() {
             @Override
             public void onSuccess() {
-                udp.setUsers(UDV);
-                userRV.setAdapter(udp);
+                rdp.setRegisters(RDV);
+                registerRV.setAdapter(rdp);
             }
         });
-
     }
 
-    public void getUsers(final VolleyCallBack callBack) {
+    public void getRegisters(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/usuarios";
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/registros";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                UDV.clear();
+                RDV.clear();
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONArray jsonArray = response;
                         JSONObject item = jsonArray.getJSONObject(i);
 
-                        userIdent = item.getInt("id");
-                        userName = item.getString("nombre");
-                        userRole = item.getString("rol");
+                        registerId = item.getInt("id");
+                        timestamp = item.getString("timeStamp");
+                        cart = item.getString("carrito");
+                        price = item.getDouble("precio");
+                        user = item.getString("usuario");
 
-                        User obj = new User(userIdent, userName, userRole);
-                        UDV.add(obj);
+                        Register obj = new Register(registerId, timestamp, cart, price, user);
+                        System.out.println(item);
+                        RDV.add(obj);
                         callBack.onSuccess();
                     }
                 } catch (JSONException e) {
@@ -120,4 +111,5 @@ public class UsersView extends AppCompatActivity {
         });
         requestQueue.add(request);
     }
+
 }

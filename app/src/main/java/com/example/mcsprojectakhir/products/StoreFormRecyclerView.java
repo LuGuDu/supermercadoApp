@@ -87,7 +87,7 @@ public class StoreFormRecyclerView extends AppCompatActivity {
 
     public void getProducts(final VolleyCallBack callBack) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/supermercado/catalogo/productos";
+        String url = "http://10.0.2.2:8080/GutierrezDuranLucas-p1/catalogo/productos";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
